@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  olimpo:
+    build:
+      args:
+        user: ariel
+        uid: 1000
+      context: .
+    image: olimpo_fashion
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+  
+  db:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./compose/mysql:/docker-entrypoint-initdb.d
+      - ./compose/mysql/data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    restart: always
+    ports:
+      - 8201:80
+  
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - 8200:80
+    volumes:
+      - ./:/var/www
+      - ./compose/nginx:/etc/nginx/conf.d
