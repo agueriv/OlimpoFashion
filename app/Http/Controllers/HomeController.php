@@ -9,4 +9,8 @@ class HomeController extends Controller
     function home() {
         return view('home');
     }
+
+    function almacen() {
+        return view('welcome');
+    }
 }
