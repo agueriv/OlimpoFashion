@@ -36,9 +36,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Vamos a cambiar el tipo del campo cover para subir fotos mas grandes
         $sql = 'alter table articulo change picture picture longblob';
-        //las migraciones de Laravel no ofrecen el tipo longblob
         DB::statement($sql);
     }
 
