@@ -12,7 +12,7 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        //
+        return view('almacen.articulo.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        //
+        return view('almacen.articulo.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        //
+        return view('almacen.articulo.show');
     }
 
     /**
@@ -44,7 +44,7 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
-        //
+        return view('almacen.articulo.edit');
     }
 
     /**

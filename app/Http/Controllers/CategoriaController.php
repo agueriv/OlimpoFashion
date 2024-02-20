@@ -12,7 +12,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        return view('almacen.categoria.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('almacen.categoria.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+        return view('almacen.categoria.show');
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        return view('almacen.categoria.edit');
     }
 
     /**
