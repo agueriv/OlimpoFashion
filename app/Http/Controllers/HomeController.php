@@ -11,6 +11,6 @@ class HomeController extends Controller
     }
 
     function almacen() {
-        return view('welcome');
+        return view('almacen.home');
     }
 }
