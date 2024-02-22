@@ -4,15 +4,101 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    const RPP = 10;
+    const ORDERBY = 'categoria.nombre';
+    const ORDERTYPE = 'asc';
+    const PARAMS = [
+        'rpp' => [
+            self::RPP => self::RPP,
+            5 => 0,
+            25 => 0,
+            50 => 0,
+            100 => 0
+        ],
+        'orderBy' => [
+            self::ORDERBY => self::ORDERBY,
+            'categoria.id' => 0,
+        ],
+        'orderType' => [
+            self::ORDERTYPE => self::ORDERTYPE,
+            'desc' => 0
+        ]
+    ];
+    public function __construct() 
     {
-        return view('almacen.categoria.index');
+        // Middlewares
+    }
+    public function index(Request $request)
+    {
+        $rpp = self::getFromRequest($request, 'rpp', self::RPP);
+        $orderBy = self::getFromRequest($request, 'orderBy', self::ORDERBY);
+        $orderType = self::getFromRequest($request, 'orderType', self::ORDERTYPE);
+        $q = $request->q;
+
+        $catQuery = DB::table('categoria')
+            ->select(
+                'categoria.id AS id',
+                'categoria.nombre AS nombre'
+            );
+
+        // Comprobamos la query (q)
+        if ($q != null) {
+            $catQuery = $catQuery->where('categoria.id', 'like', '%' . $q . '%')
+                ->orWhere('categoria.nombre', 'like', '%' . $q . '%');
+        }
+
+        $categorias = $catQuery->orderBy($orderBy, $orderType)
+            ->orderBy(self::ORDERBY, self::ORDERTYPE)
+            ->paginate($rpp);
+
+        // Recuento total de modulos
+        $count_query = DB::select('select count(*) as cat_count from categoria');
+        $cat_count = $count_query[0]->cat_count;
+
+        // Recuento de modulos mostrados
+        if ($categorias->currentPage() === 1) {
+            $init_cat = 1;
+            $last_cat_page = $categorias->perPage();
+        } else {
+            $last_mod_page = $categorias->currentPage() * $categorias->perPage();
+            if ($cat_count < $last_mod_page) {
+                $last_cat_page = $cat_count;
+            }
+            $init_cat = ($categorias->currentPage() * $categorias->perPage()) - $categorias->perPage();
+        }
+
+        return view('almacen.categoria.index', [
+            'categorias' => $categorias,
+            'orderBy' => $orderBy,
+            'orderType' => $orderType,
+            'q' => $q,
+            'rpps' => self::getRpp(),
+            'rpp' => $rpp,
+            'cat_count' => $cat_count,
+            'init_cat' => $init_cat,
+            'last_cat_page' => $last_cat_page
+        ]);
+    }
+
+    private static function getRpp()
+    {
+        return [5 => 5, 10 => 10, 25 => 25, 50 => 50, 100 => 100];
+    }
+
+    private static function getFromRequest($request, $name, $defaultValue)
+    {
+        $value = array_key_first(self::PARAMS[$name]);
+        if ($request->$name != null) {
+            $value = $request->$name;
+        }
+        if (!isset(self::PARAMS[$name][$value])) {
+            $value = array_key_first(self::PARAMS[$name]);
+        }
+        return $value;
     }
 
     /**
