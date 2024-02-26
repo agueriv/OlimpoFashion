@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticuloCreateRequest;
+use App\Http\Requests\ArticuloEditRequest;
 use App\Models\Articulo;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,7 @@ class ArticuloController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ArticuloCreateRequest $request)
     {
         //
     }
@@ -50,7 +52,7 @@ class ArticuloController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Articulo $articulo)
+    public function update(ArticuloEditRequest $request, Articulo $articulo)
     {
         //
     }
