@@ -218,8 +218,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center text-muted">
-                All Rights Reserved by Freedash. Designed and Developed by <a
-                    href="https://adminmart.com/">Adminmart</a>.
+                &copy;2024 <a href="https://arielguerrerol.es" target="_BLANK">arielguerrero.es</a>. Todos los derechos reservados.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -255,6 +254,7 @@
     <script src="{{ url('backassets/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
     <script src="{{ url('backassets/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ url('backassets/dist/js/pages/dashboards/dashboard1.min.js') }}"></script>
+    <script src="{{ url('backassets/dist/js/myscript.js') }}"></script>
 </body>
 
 </html>
