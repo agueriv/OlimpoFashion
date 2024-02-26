@@ -117,7 +117,7 @@
                                             class="btn btn-warning btn-circle"><i class="fa fa-pencil-alt"></i>
                                         </a>
                                         <button type="button" form="deleteModuloForm" class="btn btn-danger btn-circle"><i
-                                                class="fa fa-trash" data-url="{{ url('almacen/categoria' . $cat->id) }}"
+                                                class="fa fa-trash" data-url="{{ url('almacen/categoria/' . $cat->id) }}"
                                                 data-nombre="{{ $cat->nombre }}" data-bs-toggle="modal"
                                                 data-bs-target="#deleteCategoriaModal"></i>
                                         </button>
