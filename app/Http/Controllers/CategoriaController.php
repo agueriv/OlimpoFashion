@@ -11,19 +11,19 @@ use Illuminate\Support\Facades\DB;
 class CategoriaController extends Controller
 {
     const RPP = 4;
-    const ORDERBY = 'categoria.nombre';
+    const ORDERBY = 'categoria.id';
     const ORDERTYPE = 'asc';
     const PARAMS = [
         'rpp' => [
             self::RPP => self::RPP,
-            5 => 0,
-            25 => 0,
-            50 => 0,
-            100 => 0
+            8 => 0,
+            16 => 0,
+            32 => 0,
+            64 => 0
         ],
         'orderBy' => [
             self::ORDERBY => self::ORDERBY,
-            'categoria.id' => 0,
+            'categoria.nombre' => 0,
         ],
         'orderType' => [
             self::ORDERTYPE => self::ORDERTYPE,
@@ -34,6 +34,7 @@ class CategoriaController extends Controller
     {
         // Middlewares
     }
+
     public function index(Request $request)
     {
         $rpp = self::getFromRequest($request, 'rpp', self::RPP);
@@ -75,6 +76,8 @@ class CategoriaController extends Controller
 
         $colors = ['primary', 'success', 'info', 'warning'];
 
+        $order = $orderBy . '.' . $orderType;
+
         return view('almacen.categoria.index', [
             'categorias' => $categorias,
             'orderBy' => $orderBy,
@@ -85,13 +88,14 @@ class CategoriaController extends Controller
             'cat_count' => $cat_count,
             'init_cat' => $init_cat,
             'last_cat_page' => $last_cat_page,
-            'colors' => $colors
+            'colors' => $colors,
+            'order' => $order
         ]);
     }
 
     private static function getRpp()
     {
-        return [5 => 5, 10 => 10, 25 => 25, 50 => 50, 100 => 100];
+        return [4 => 4, 8 => 8, 16 => 16, 32 => 32, 64 => 64];
     }
 
     private static function getFromRequest($request, $name, $defaultValue)

@@ -19,8 +19,14 @@
             </div>
             <div class="col-5 align-self-center">
                 <div class="customize-input float-end">
-                    <input class="form-control custom-shadow custom-radius border-0 bg-white" type="search"
-                        placeholder="Buscar..." aria-label="Search">
+                    <input class="form-control custom-shadow custom-radius border-0 bg-white" name="q"
+                        form="searchForm" type="search" placeholder="Buscar..." aria-label="Search"
+                        value="{{ $q }}">
+                    <form id="searchForm" action="">
+                        <input type="hidden" name="orderBy" value="{{ $orderBy }}" />
+                        <input type="hidden" name="orderType" value="{{ $orderType }}" />
+                        <input type="hidden" name="rpp" value="{{ $rpp }}" />
+                    </form>
                 </div>
             </div>
         </div>
@@ -34,27 +40,62 @@
                             <div class="col-7 align-self-center">
                                 <div class="customize-input float-start">
                                     <select
-                                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                                        <option selected>4</option>
-                                        <option value="1">8</option>
-                                        <option value="1">16</option>
+                                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
+                                        name="rpp" id="rpp" form="rppForm">
+                                        @foreach ($rpps as $index => $value)
+                                            <option value="{{ $index }}" {{ $rpp == $index ? 'selected' : '' }}>
+                                                {{ $value }}</option>
+                                        @endforeach
                                     </select>
+                                    <form id="rppForm" action="">
+                                        <input type="hidden" name="orderBy" value="{{ $orderBy }}" />
+                                        <input type="hidden" name="orderType" value="{{ $orderType }}" />
+                                        <input type="hidden" name="q" value="{{ $q }}" />
+                                    </form>
+                                    <script>
+                                        document.getElementById('rpp').addEventListener('change', () => {
+                                            document.getElementById('rppForm').submit();
+                                        })
+                                    </script>
                                 </div>
                             </div>
                             <div class="col-5 align-self-center">
                                 <div class="customize-input float-end">
                                     <select
-                                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                                        <option selected>Nombre asc</option>
-                                        <option value="1">Nombre desc</option>
+                                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius" name="orderType" id="orderTypeNombre" form="nombreForm">
+                                        <option value="" selected disabled>Nombre</option>
+                                        <option value="asc" {{ $order == 'categoria.nombre.asc' ? 'selected' : '' }}>Nombre ASC</option>
+                                        <option value="desc" {{ $order == 'categoria.nombre.desc' ? 'selected' : '' }}>Nombre DESC</option>
                                     </select>
+                                    <form id="nombreForm" action="">
+                                        <input type="hidden" name="orderBy" value="categoria.nombre" />
+                                        <input type="hidden" name="rpp" value="{{ $rpp }}" />
+                                        <input type="hidden" name="q" value="{{ $q }}" />
+                                    </form>
+                                    <script>
+                                        document.getElementById('orderTypeNombre').addEventListener('change', () => {
+                                            document.getElementById('nombreForm').submit();
+                                        })
+                                    </script>
                                 </div>
                                 <div class="customize-input float-end me-3">
                                     <select
-                                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                                        <option selected>ID asc</option>
-                                        <option value="1">ID desc</option>
+                                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
+                                        name="orderType" id="orderTypeId" form="idForm">
+                                        <option value="" selected disabled>Id</option>
+                                        <option value="asc" {{ $order == 'categoria.id.asc' ? 'selected' : '' }}>ID ASC</option>
+                                        <option value="desc" {{ $order == 'categoria.id.desc' ? 'selected' : '' }}>ID DESC</option>
                                     </select>
+                                    <form id="idForm" action="">
+                                        <input type="hidden" name="orderBy" value="categoria.id" />
+                                        <input type="hidden" name="rpp" value="{{ $rpp }}" />
+                                        <input type="hidden" name="q" value="{{ $q }}" />
+                                    </form>
+                                    <script>
+                                        document.getElementById('orderTypeId').addEventListener('change', () => {
+                                            document.getElementById('idForm').submit();
+                                        })
+                                    </script>
                                 </div>
                             </div>
                         </div>
