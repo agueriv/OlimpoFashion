@@ -57,23 +57,6 @@ class CategoriaController extends Controller
         $categorias = $catQuery->orderBy($orderBy, $orderType)
             ->orderBy(self::ORDERBY, self::ORDERTYPE)
             ->paginate($rpp);
-
-        // Recuento total de modulos
-        $count_query = DB::select('select count(*) as cat_count from categoria');
-        $cat_count = $count_query[0]->cat_count;
-
-        // Recuento de modulos mostrados
-        if ($categorias->currentPage() === 1) {
-            $init_cat = 1;
-            $last_cat_page = $categorias->perPage();
-        } else {
-            $last_mod_page = $categorias->currentPage() * $categorias->perPage();
-            if ($cat_count < $last_mod_page) {
-                $last_cat_page = $cat_count;
-            }
-            $init_cat = ($categorias->currentPage() * $categorias->perPage()) - $categorias->perPage();
-        }
-
         $colors = ['primary', 'success', 'info', 'warning'];
 
         $order = $orderBy . '.' . $orderType;
@@ -85,9 +68,6 @@ class CategoriaController extends Controller
             'q' => $q,
             'rpps' => self::getRpp(),
             'rpp' => $rpp,
-            'cat_count' => $cat_count,
-            'init_cat' => $init_cat,
-            'last_cat_page' => $last_cat_page,
             'colors' => $colors,
             'order' => $order
         ]);
@@ -128,7 +108,7 @@ class CategoriaController extends Controller
         try {
             $result = $object->save();
             // Donde redirigirá después de crear
-            $target = 'almacen/categoria/' . $object->id;
+            $target = 'almacen/categoria';
             return redirect($target)->with(['message' => 'Categoría creada correctamente.']);
         } catch (\Exception $e) {
             return back()->withInput()->withErrors(['message' => 'La categoría no ha sido creada correctamente.']);
@@ -148,7 +128,7 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        return view('almacen.categoria.edit');
+        return view('almacen.categoria.edit', ['cat' => $categoria]);
     }
 
     /**
@@ -156,7 +136,12 @@ class CategoriaController extends Controller
      */
     public function update(CategoriaEditRequest $request, Categoria $categoria)
     {
-        //
+        try {
+            $categoria->update($request->all());
+            return redirect('almacen/categoria')->with(['message'=> 'Categoría editada con éxito.']);
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['message' => 'No se ha podido editar la categoría.']);
+        }
     }
 
     /**
@@ -164,6 +149,11 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        //
+        try {
+            $categoria->delete();
+            return redirect('almacen/categoria')->with(['message'=> 'Categoría eliminada con éxito.']);
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['message' => 'No se ha podido eliminar la categoría.']);
+        }
     }
 }
