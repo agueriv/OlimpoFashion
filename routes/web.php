@@ -9,4 +9,6 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/almacen', [HomeController::class, 'almacen'])->name('almacen');
 
 Route::resource('almacen/articulo', ArticuloController::class);
-Route::resource('almacen/categoria', CategoriaController::class);
+Route::resource('almacen/categoria', CategoriaController::class, [
+    'parameters' => ['categoria' => 'categoria']
+]);
