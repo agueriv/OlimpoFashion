@@ -52,6 +52,7 @@ class CategoriaController extends Controller
         if ($q != null) {
             $catQuery = $catQuery->where('categoria.id', 'like', '%' . $q . '%')
                 ->orWhere('categoria.nombre', 'like', '%' . $q . '%');
+                
         }
 
         $categorias = $catQuery->orderBy($orderBy, $orderType)
@@ -118,9 +119,33 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $categoria)
+    public function show(Request $request, Categoria $categoria)
     {
-        return view('almacen.categoria.show');
+        $rpp = $request->rpp != null ? $request->rpp : 6;
+        $orderBy = 'nombre';
+        $orderType = self::getFromRequest($request, 'orderType', self::ORDERTYPE);
+        $q = $request->q;
+
+        $articulosQ = DB::table('articulo')->where('idcategoria', $categoria->id)->select('id', 'nombre', 'descripcion', 'picture');
+
+        if ($q != null) {
+            $articulosQ = $articulosQ->where(function ($query) use ($q) {
+                $query->where('nombre', 'like', '%' . $q . '%');
+            });
+        }
+        
+        $rpps = [3 => 3, 6 => 6, 12 => 12, 24 => 24, 32 => 32];
+
+        $articulos = $articulosQ->orderBy($orderBy, $orderType)->paginate($rpp);
+        return view('almacen.categoria.show', [
+            'cat' => $categoria,
+            'articulos' => $articulos,
+            'rpp' => $rpp,
+            'orderBy' => $orderBy,
+            'orderType' => $orderType,
+            'q' => $q,
+            'rpps' => $rpps
+        ]); 
     }
 
     /**
@@ -138,7 +163,7 @@ class CategoriaController extends Controller
     {
         try {
             $categoria->update($request->all());
-            return redirect('almacen/categoria')->with(['message'=> 'Categoría editada con éxito.']);
+            return redirect('almacen/categoria')->with(['message' => 'Categoría editada con éxito.']);
         } catch (\Exception $e) {
             return back()->withInput()->withErrors(['message' => 'No se ha podido editar la categoría.']);
         }
@@ -151,7 +176,7 @@ class CategoriaController extends Controller
     {
         try {
             $categoria->delete();
-            return redirect('almacen/categoria')->with(['message'=> 'Categoría eliminada con éxito.']);
+            return redirect('almacen/categoria')->with(['message' => 'Categoría eliminada con éxito.']);
         } catch (\Exception $e) {
             return back()->withInput()->withErrors(['message' => 'No se ha podido eliminar la categoría.']);
         }
