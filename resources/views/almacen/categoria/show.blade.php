@@ -4,7 +4,6 @@
 
 @section('content')
     @include('almacen.categoria.modal.delete')
-    @include('almacen.categoria.modal.delete')
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-7 align-self-center">
