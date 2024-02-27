@@ -34,7 +34,10 @@
                                     <p class="ms-2 mt-1" style="color: #c62828; font-size: .9rem">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary mt-4">Registrar categoría</button>
+                            <button type="submit" class="btn btn-primary btn-rounded float-end mt-4">
+                                <i class="fas fa-plus me-1"></i>
+                                Registrar categoría
+                            </button>
                         </form>
                     </div>
                 </div>

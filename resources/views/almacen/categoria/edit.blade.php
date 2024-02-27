@@ -3,14 +3,18 @@
 @section('title', 'Editar Categoría - Olimpo')
 
 @section('content')
+    @include('almacen.categoria.modal.delete')
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Editar categoría {{ $cat->nombre }}</h4>
+                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Editar categoría {{ $cat->nombre }}
+                </h4>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item"><a href="{{ url('almacen') }}" class="text-muted">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('almacen/categoria') }}" class="text-muted">Lista de
+                                    categorías</a></li>
                             <li class="breadcrumb-item text-muted active" aria-current="page">Editar categoría</li>
                         </ol>
                     </nav>
@@ -35,7 +39,10 @@
                                     <p class="ms-2 mt-1" style="color: #c62828; font-size: .9rem">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary mt-4">Editar categoría</button>
+                            <button type="submit" class="btn btn-warning btn-rounded float-end mt-4">
+                                <i class="fas fa-pencil-alt"></i>
+                                Editar categoría
+                            </button>
                         </form>
                     </div>
                 </div>

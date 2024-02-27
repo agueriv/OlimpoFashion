@@ -62,10 +62,13 @@
                             <div class="col-5 align-self-center">
                                 <div class="customize-input float-end">
                                     <select
-                                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius" name="orderType" id="orderTypeNombre" form="nombreForm">
+                                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
+                                        name="orderType" id="orderTypeNombre" form="nombreForm">
                                         <option value="" selected disabled>Nombre</option>
-                                        <option value="asc" {{ $order == 'categoria.nombre.asc' ? 'selected' : '' }}>Nombre ASC</option>
-                                        <option value="desc" {{ $order == 'categoria.nombre.desc' ? 'selected' : '' }}>Nombre DESC</option>
+                                        <option value="asc" {{ $order == 'categoria.nombre.asc' ? 'selected' : '' }}>
+                                            Nombre ASC</option>
+                                        <option value="desc" {{ $order == 'categoria.nombre.desc' ? 'selected' : '' }}>
+                                            Nombre DESC</option>
                                     </select>
                                     <form id="nombreForm" action="">
                                         <input type="hidden" name="orderBy" value="categoria.nombre" />
@@ -83,8 +86,10 @@
                                         class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
                                         name="orderType" id="orderTypeId" form="idForm">
                                         <option value="" selected disabled>Id</option>
-                                        <option value="asc" {{ $order == 'categoria.id.asc' ? 'selected' : '' }}>ID ASC</option>
-                                        <option value="desc" {{ $order == 'categoria.id.desc' ? 'selected' : '' }}>ID DESC</option>
+                                        <option value="asc" {{ $order == 'categoria.id.asc' ? 'selected' : '' }}>ID ASC
+                                        </option>
+                                        <option value="desc" {{ $order == 'categoria.id.desc' ? 'selected' : '' }}>ID
+                                            DESC</option>
                                     </select>
                                     <form id="idForm" action="">
                                         <input type="hidden" name="orderBy" value="categoria.id" />
@@ -116,10 +121,11 @@
                                         <a href="{{ url('almacen/categoria/' . $cat->id . '/edit') }}"
                                             class="btn btn-warning btn-circle"><i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <button type="button" form="deleteModuloForm" class="btn btn-danger btn-circle"><i
-                                                class="fa fa-trash" data-url="{{ url('almacen/categoria/' . $cat->id) }}"
-                                                data-nombre="{{ $cat->nombre }}" data-bs-toggle="modal"
-                                                data-bs-target="#deleteCategoriaModal"></i>
+                                        <button type="button" data-url="{{ url('almacen/categoria/' . $cat->id) }}"
+                                            data-nombre="{{ $cat->nombre }}" data-bs-toggle="modal"
+                                            data-bs-target="#deleteCategoriaModal" form="deleteModuloForm"
+                                            class="btn btn-danger btn-circle">
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </div>
                                 </div>
