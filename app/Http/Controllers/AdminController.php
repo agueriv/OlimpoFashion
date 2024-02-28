@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+    function __construct()
+    {
+        // middlewares
+        $this->middleware('auth');
+        // Middleware solo jefe
+        $this->middleware('jefe');
+    }
     /**
      * Display a listing of the resource.
      */

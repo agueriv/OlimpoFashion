@@ -43,6 +43,7 @@ class ArticuloController extends Controller
     function __construct()
     {
         // Middlewares
+        $this->middleware('auth');
     }
     public function index(Request $request)
     {
