@@ -66,9 +66,10 @@
                                             class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
                                             name="orderType" id="orderTypePrecio" form="precioForm">
                                             <option value="" selected disabled>Precio</option>
-                                            <option value="asc" {{$order == 'articulo.precio.asc' ? 'selected' : ''}}>
+                                            <option value="asc" {{ $order == 'articulo.precio.asc' ? 'selected' : '' }}>
                                                 Precio ASC</option>
-                                            <option value="desc" {{$order == 'articulo.precio.desc' ? 'selected' : ''}}>
+                                            <option value="desc"
+                                                {{ $order == 'articulo.precio.desc' ? 'selected' : '' }}>
                                                 Precio DESC</option>
                                         </select>
                                         <form id="precioForm" action="">
@@ -87,9 +88,10 @@
                                             class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
                                             name="orderType" id="orderTypeNombre" form="nombreForm">
                                             <option value="" selected disabled>Nombre</option>
-                                            <option value="asc" {{$order == 'articulo.nombre.asc' ? 'selected' : ''}}>
+                                            <option value="asc" {{ $order == 'articulo.nombre.asc' ? 'selected' : '' }}>
                                                 Nombre ASC</option>
-                                                <option value="desc" {{$order == 'articulo.nombre.desc' ? 'selected' : ''}}>
+                                            <option value="desc"
+                                                {{ $order == 'articulo.nombre.desc' ? 'selected' : '' }}>
                                                 Nombre DESC</option>
                                         </select>
                                         <form id="nombreForm" action="">
@@ -108,10 +110,10 @@
                                             class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
                                             name="orderType" id="orderTypeId" form="idForm">
                                             <option value="" selected disabled>ID</option>
-                                            <option value="asc" {{$order == 'articulo.id.asc' ? 'selected' : ''}}>ID
+                                            <option value="asc" {{ $order == 'articulo.id.asc' ? 'selected' : '' }}>ID
                                                 ASC
                                             </option>
-                                            <option value="desc" {{$order == 'articulo.id.desc' ? 'selected' : ''}}>ID
+                                            <option value="desc" {{ $order == 'articulo.id.desc' ? 'selected' : '' }}>ID
                                                 DESC</option>
                                         </select>
                                         <form id="idForm" action="">
@@ -136,7 +138,7 @@
                                                 <img class="card-img-top img-fluid"
                                                     src="data:image/jpeg;base64,{{ $art->picture }}"
                                                     alt="Imagen de producto"
-                                                    style="object-fit: cover; aspect-ratio: 4 / 3">
+                                                    style="object-fit: cover; aspect-ratio: 4 / 3;">
                                                 <div class="card-body">
                                                     <h4 class="card-title"><a
                                                             href="{{ url('almacen/articulo/' . $art->id) }}">{{ $art->nombre }}</a>

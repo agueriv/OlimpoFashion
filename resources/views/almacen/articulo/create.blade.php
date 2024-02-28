@@ -119,6 +119,9 @@
                                         value="0" checked>
                                     <label class="form-check-label" for="en_rebaja2">No, no está rebajado</label>
                                 </div>
+                                @error('en_rebaja')
+                                    <p class="ms-2 mt-1" style="color: #c62828; font-size: .9rem">{{ $message }}</p>
+                                @enderror
                             </div>
                             <script>
                                 document.getElementsByName('en_rebaja').forEach(radio => radio.addEventListener('change', () => {
