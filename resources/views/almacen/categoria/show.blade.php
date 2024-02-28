@@ -102,7 +102,7 @@
                                             <div class="card">
                                                 <img class="card-img-top img-fluid"
                                                     src="data:image/jpeg;base64,{{ $art->picture }}"
-                                                    alt="Imagen de producto">
+                                                    alt="Imagen de producto" style="object-fit: cover; aspect-ratio: 4 / 3">
                                                 <div class="card-body">
                                                     <h4 class="card-title"><a
                                                             href="{{ url('almacen/articulo/' . $art->id) }}">{{ $art->nombre }}</a>
