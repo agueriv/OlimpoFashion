@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArticuloCreateRequest;
 use App\Http\Requests\ArticuloEditRequest;
 use App\Models\Articulo;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -82,21 +83,35 @@ class ArticuloController extends Controller
             ->orderBy(self::ORDERBY, self::ORDERTYPE)
             ->paginate($rpp);
 
+        // SELECTS 
+        $secciones = ['h' => 'Hombre', 'm' => 'Mujer', 'n' => 'Niños', 'all' => 'Unisex'];
+        $temporadas = ['pri-ver' => 'Primavera/Verano', 'oto-inv' => 'Otoño/Invierno', 'all' => 'Todo el año'];
+
+        // order
+        $order = $orderBy . '.' . $orderType;
         return view('almacen.articulo.index', [
-            'articulos' => $articulos
+            'articulos' => $articulos,
+            'orderBy' => $orderBy,
+            'orderType' => $orderType,
+            'q' => $q,
+            'rpps' => self::getRpp(),
+            'rpp' => $rpp,
+            'secciones' => $secciones,
+            'temporadas' => $temporadas,
+            'order' => $order
         ]);
     }
 
     private static function getRpp()
     {
         return [
-            3 => 0,
-            6 => 0,
-            12 => 0,
-            24 => 0,
-            32 => 0,
-            64 => 0,
-            128 => 0
+            3 => 3,
+            6 => 6,
+            12 => 12,
+            24 => 24,
+            32 => 32,
+            64 => 64,
+            128 => 128
         ];
     }
 
@@ -117,7 +132,16 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        return view('almacen.articulo.create');
+        // SELECTS 
+        $categorias = Categoria::all();
+        $secciones = ['h' => 'Hombre', 'm' => 'Mujer', 'n' => 'Niños', 'all' => 'Unisex'];
+        $temporadas = ['pri-ver' => 'Primavera/Verano', 'oto-inv' => 'Otoño/Invierno', 'all' => 'Todo el año'];
+
+        return view('almacen.articulo.create', [
+            'categorias' => $categorias,
+            'secciones' => $secciones,
+            'temporadas' => $temporadas
+        ]);
     }
 
     /**
@@ -125,7 +149,31 @@ class ArticuloController extends Controller
      */
     public function store(ArticuloCreateRequest $request)
     {
-        //
+        $art = new Articulo();
+        $art->nombre = $request->nombre;
+        $art->seccion = $request->seccion;
+        $art->descripcion = $request->descripcion;
+        $art->temporada = $request->temporada;
+        $art->idcategoria = $request->categoria;
+        $art->en_rebaja = $request->en_rebaja;
+        $art->precio = $request->precio;
+        $art->precio_rebaja = $request->precio_rebaja;
+
+        if ($request->hasFile('picture') && $request->file('picture')->isValid()) {
+            $archivo = $request->file('picture');
+            $path = $archivo->getRealPath();
+            $imagen = file_get_contents($path);
+
+            $art->picture = base64_encode($imagen);
+        }
+        try {
+            $result = $art->save();
+            // Donde redirigirá después de crear
+            $target = 'almacen/articulo';
+            return redirect($target)->with(['message' => 'Artículo creado correctamente.']);
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['message' => 'El artículo no ha sido creado correctamente.']);
+        }
     }
 
     /**
@@ -133,7 +181,7 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        return view('almacen.articulo.show');
+        return view('almacen.articulo.show', ['art' => $articulo]);
     }
 
     /**
@@ -141,7 +189,17 @@ class ArticuloController extends Controller
      */
     public function edit(Articulo $articulo)
     {
-        return view('almacen.articulo.edit');
+        // SELECTS 
+        $categorias = Categoria::all();
+        $secciones = ['h' => 'Hombre', 'm' => 'Mujer', 'n' => 'Niños', 'all' => 'Unisex'];
+        $temporadas = ['pri-ver' => 'Primavera/Verano', 'oto-inv' => 'Otoño/Invierno', 'all' => 'Todo el año'];
+
+        return view('almacen.articulo.edit', [
+            'art' => $articulo,
+            'categorias' => $categorias,
+            'secciones' => $secciones,
+            'temporadas' => $temporadas
+        ]);
     }
 
     /**
@@ -149,7 +207,30 @@ class ArticuloController extends Controller
      */
     public function update(ArticuloEditRequest $request, Articulo $articulo)
     {
-        //
+        try {
+            $articulo->nombre = $request->nombre;
+            $articulo->seccion = $request->seccion;
+            $articulo->descripcion = $request->descripcion;
+            $articulo->temporada = $request->temporada;
+            $articulo->idcategoria = $request->categoria;
+            $articulo->en_rebaja = $request->en_rebaja;
+            $articulo->precio = $request->precio;
+            $articulo->precio_rebaja = $request->precio_rebaja;
+
+            if ($request->hasFile('picture') && $request->file('picture')->isValid()) {
+                $archivo = $request->file('picture');
+                $path = $archivo->getRealPath();
+                $imagen = file_get_contents($path);
+
+                $articulo->picture = base64_encode($imagen);
+            }
+
+            $articulo->save();
+
+            return redirect('almacen/articulo')->with(['message' => 'Artículo editado con éxito.']);
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['message' => 'No se ha podido editar el artículo.']);
+        }
     }
 
     /**
@@ -157,6 +238,11 @@ class ArticuloController extends Controller
      */
     public function destroy(Articulo $articulo)
     {
-        //
+        try {
+            $articulo->delete();
+            return redirect('almacen/articulo')->with(['message' => 'Artículo eliminado con éxito.']);
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['message' => 'No se ha podido eliminar el artículo.']);
+        }
     }
 }
