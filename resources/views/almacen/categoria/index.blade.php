@@ -106,30 +106,34 @@
                         </div>
                         <div class="row">
                             <!-- Column -->
-                            @foreach ($categorias as $cat)
-                                <div class="col-md-6 col-lg-6 col-xl-3 mb-5">
-                                    <div class="card card-hover mb-3">
-                                        <div class="p-2 bg-{{ $colors[array_rand($colors)] }} text-center rounded">
-                                            <h2 class="font-light text-white">{{ $cat->nombre }}</h2>
-                                            <h6 class="text-white">ID: {{ $cat->id }}</h6>
+                            @if (sizeof($categorias) > 0)
+                                @foreach ($categorias as $cat)
+                                    <div class="col-md-6 col-lg-6 col-xl-3 mb-5">
+                                        <div class="card card-hover mb-3">
+                                            <div class="p-2 bg-{{ $colors[array_rand($colors)] }} text-center rounded">
+                                                <h2 class="font-light text-white">{{ $cat->nombre }}</h2>
+                                                <h6 class="text-white">ID: {{ $cat->id }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row d-flex justify-content-center gap-2">
+                                            <a href="{{ url('almacen/categoria/' . $cat->id) }}"
+                                                class="btn btn-primary btn-circle"><i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="{{ url('almacen/categoria/' . $cat->id . '/edit') }}"
+                                                class="btn btn-warning btn-circle"><i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                            <button type="button" data-url="{{ url('almacen/categoria/' . $cat->id) }}"
+                                                data-nombre="{{ $cat->nombre }}" data-bs-toggle="modal"
+                                                data-bs-target="#deleteCategoriaModal" form="deleteModuloForm"
+                                                class="btn btn-danger btn-circle">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="row d-flex justify-content-center gap-2">
-                                        <a href="{{ url('almacen/categoria/' . $cat->id) }}"
-                                            class="btn btn-primary btn-circle"><i class="fa fa-eye"></i>
-                                        </a>
-                                        <a href="{{ url('almacen/categoria/' . $cat->id . '/edit') }}"
-                                            class="btn btn-warning btn-circle"><i class="fa fa-pencil-alt"></i>
-                                        </a>
-                                        <button type="button" data-url="{{ url('almacen/categoria/' . $cat->id) }}"
-                                            data-nombre="{{ $cat->nombre }}" data-bs-toggle="modal"
-                                            data-bs-target="#deleteCategoriaModal" form="deleteModuloForm"
-                                            class="btn btn-danger btn-circle">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            @else
+                                <p class="text-muted">No hay categorías...</p>
+                            @endif
                         </div>
                         {{ $categorias->appends(['rpp' => $rpp, 'orderBy' => $orderBy, 'orderType' => $orderType, 'q' => $q])->onEachSide(2)->links() }}
                     </div>
