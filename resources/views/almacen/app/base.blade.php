@@ -120,12 +120,6 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
                                         class="svg-icon me-2 ms-1"></i>
                                     My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="credit-card"
-                                        class="svg-icon me-2 ms-1"></i>
-                                    My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="mail"
-                                        class="svg-icon me-2 ms-1"></i>
-                                    Inbox</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings"
                                         class="svg-icon me-2 ms-1"></i>
@@ -133,10 +127,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
                                         class="svg-icon me-2 ms-1"></i>
-                                    Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
-                                        Profile</a></div>
+                                    Logout</a>      
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -163,6 +154,24 @@
                                 <i data-feather="home" class="feather-icon"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                                <i data-feather="box" class="feather-icon"></i>
+                                <span class="hide-menu">Administración</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse first-level base-level-line">
+                                <li class="sidebar-item">
+                                    <a href="{{url('almacen/admin')}}" class="sidebar-link">
+                                        <span class="hide-menu">Lista de usuarios</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{{url('almacen/admin/create')}}" class="sidebar-link">
+                                        <span class="hide-menu">Registrar usuarios</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="list-divider"></li>
                         <li class="nav-small-cap">
