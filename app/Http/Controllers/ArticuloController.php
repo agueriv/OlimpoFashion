@@ -181,7 +181,16 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        return view('almacen.articulo.show', ['art' => $articulo]);
+        $categorias = Categoria::all();
+        $secciones = ['h' => 'Hombre', 'm' => 'Mujer', 'n' => 'Niños', 'all' => 'Unisex'];
+        $temporadas = ['pri-ver' => 'Primavera/Verano', 'oto-inv' => 'Otoño/Invierno', 'all' => 'Todo el año'];
+
+        return view('almacen.articulo.show', [
+            'art' => $articulo,
+            'categorias' => $categorias,
+            'secciones' => $secciones,
+            'temporadas' => $temporadas
+        ]);
     }
 
     /**
