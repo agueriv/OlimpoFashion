@@ -113,7 +113,7 @@
                                 <img src="{{ url('backassets/assets/images/users/profile-pic.jpg') }}" alt="user"
                                     class="rounded-circle" width="40">
                                 <span class="ms-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                        class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
+                                        class="text-dark">{{ Auth::user()->name }}</span> <i data-feather="chevron-down"
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-right user-dd animated flipInY">
@@ -125,9 +125,15 @@
                                         class="svg-icon me-2 ms-1"></i>
                                     Account Setting</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
-                                        class="svg-icon me-2 ms-1"></i>
-                                    Logout</a>      
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                    <i data-feather="power" class="svg-icon me-2 ms-1"></i>
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -155,24 +161,26 @@
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                                <i data-feather="box" class="feather-icon"></i>
-                                <span class="hide-menu">Administración</span>
-                            </a>
-                            <ul aria-expanded="false" class="collapse first-level base-level-line">
-                                <li class="sidebar-item">
-                                    <a href="{{url('almacen/admin')}}" class="sidebar-link">
-                                        <span class="hide-menu">Lista de usuarios</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="{{url('almacen/admin/create')}}" class="sidebar-link">
-                                        <span class="hide-menu">Registrar usuarios</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if (Auth::user()->puesto === 'jefe')
+                            <li class="sidebar-item">
+                                <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                                    <i data-feather="box" class="feather-icon"></i>
+                                    <span class="hide-menu">Administración</span>
+                                </a>
+                                <ul aria-expanded="false" class="collapse first-level base-level-line">
+                                    <li class="sidebar-item">
+                                        <a href="{{ url('almacen/admin') }}" class="sidebar-link">
+                                            <span class="hide-menu">Lista de usuarios</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a href="{{ url('almacen/admin/create') }}" class="sidebar-link">
+                                            <span class="hide-menu">Registrar usuarios</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                         <li class="list-divider"></li>
                         <li class="nav-small-cap">
                             <span class="hide-menu">Artículos</span>
