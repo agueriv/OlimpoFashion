@@ -17,7 +17,7 @@ Route::resource('almacen/categoria', CategoriaController::class, [
 ]);
 
 Route::prefix('almacen')->group(function () {
-    Auth::routes(['verify' => true]);
+    Auth::routes(['verify' => true, 'register' => false]);
 });
 
 Route::get('almacen/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
