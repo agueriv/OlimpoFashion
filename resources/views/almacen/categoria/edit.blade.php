@@ -39,10 +39,22 @@
                                     <p class="ms-2 mt-1" style="color: #c62828; font-size: .9rem">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-warning btn-rounded float-end mt-4">
-                                <i class="fas fa-pencil-alt"></i>
-                                Editar categoría
-                            </button>
+                            <div class="row d-flex mt-4">
+                                <div class="col-12 float-end">
+                                    <button data-url="{{ url('almacen/categoria/' . $cat->id) }}"
+                                        data-nombre="{{ $cat->nombre }}" data-bs-toggle="modal"
+                                        data-bs-target="#deleteCategoriaModal" form="deleteUsuarioForm"
+                                        class="btn btn-danger btn-rounded float-end">
+                                        <i class="fas fa-trash me-1"></i>
+                                        Eliminar
+                                    </button>
+                                    <a href="{{ url('almacen/categoria/' . $cat->id . '/edit') }}"
+                                        class="btn btn-warning btn-rounded float-end me-3">
+                                        <i class="fas fa-pencil-alt me-1"></i>
+                                        Editar
+                                    </a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
