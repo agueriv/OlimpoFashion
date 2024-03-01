@@ -15,6 +15,7 @@
     <link href="{{ url('backassets/assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
     <link href="{{ url('backassets/assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
     <link href="{{ url('backassets/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
     <link href="{{ url('backassets/dist/css/style.min.css') }}" rel="stylesheet">
 </head>
@@ -74,29 +75,9 @@
                     <ul class="navbar-nav float-left me-auto ms-3 ps-1">
                         <!-- create new -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i data-feather="settings" class="svg-icon"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item d-none d-md-block">
-                            <a class="nav-link" href="javascript:void(0)">
-                                <div class="customize-input">
-                                    <select
-                                        class="custom-select form-control bg-white custom-radius custom-shadow border-0">
-                                        <option selected>EN</option>
-                                        <option value="1">AB</option>
-                                        <option value="2">AK</option>
-                                        <option value="3">BE</option>
-                                    </select>
-                                </div>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-toggle d-fex align-items-center" href="{{url('/')}}" id="navbarDropdown">
+                                <i class="fa fa-store-alt"></i>&nbsp;&nbsp;<span>Ir a la tienda<span>
                             </a>
                         </li>
                     </ul>
@@ -110,7 +91,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="{{ url('backassets/assets/images/users/profile-pic.jpg') }}" alt="user"
+                                <img src="{{ url('backassets/assets/images/users/profile-pic.svg') }}" alt="user"
                                     class="rounded-circle" width="40">
                                 <span class="ms-2 d-none d-lg-inline-block"><span>Hello,</span> <span
                                         class="text-dark">{{ Auth::user()->name }}</span> <i data-feather="chevron-down"
@@ -120,10 +101,6 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
                                         class="svg-icon me-2 ms-1"></i>
                                     My Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings"
-                                        class="svg-icon me-2 ms-1"></i>
-                                    Account Setting</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -164,7 +141,7 @@
                         @if (Auth::user()->puesto === 'jefe')
                             <li class="sidebar-item">
                                 <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                                    <i data-feather="box" class="feather-icon"></i>
+                                    <i data-feather="user" class="feather-icon"></i>
                                     <span class="hide-menu">Administración</span>
                                 </a>
                                 <ul aria-expanded="false" class="collapse first-level base-level-line">
@@ -188,7 +165,7 @@
 
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ url('almacen/articulo') }}" aria-expanded="false">
-                                <i data-feather="list" class="feather-icon"></i>
+                                <i data-feather="shopping-bag" class="feather-icon"></i>
                                 <span class="hide-menu">Lista de artículos</span>
                             </a>
                         </li>
@@ -205,7 +182,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ url('almacen/categoria') }}" aria-expanded="false">
-                                <i data-feather="list" class="feather-icon"></i>
+                                <i data-feather="tag" class="feather-icon"></i>
                                 <span class="hide-menu">Lista de categorías</span>
                             </a>
                         </li>
