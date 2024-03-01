@@ -60,6 +60,11 @@
                             <li>
                                 <a href="#catalogo">Catálogo</a>
                             </li>
+                            @auth
+                                <li>
+                                    <a href="{{url('almacen')}}">Almacén</a>
+                                </li>
+                            @endauth
                         </ul>
                     </div>
 
