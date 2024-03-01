@@ -22,15 +22,46 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body d-flex justify-content-center p-5">
-                        <form class="col-xl-5 col-lg-7 col-md-6 d-flex flex-column align-items-center"
-                            action="{{ url('almacen/admin') }}" method="post">
+                    <div class="card-body p-5">
+                        <form id="createForm" action="{{ url('almacen/admin') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
-                            <h2 class="text-dark mb-4 font-weight-medium">Nuevo usuario</h2>
-                            <div class="form-group col-12">
-                                <input type="text" class="form-control" name="nombre" id="nombre"
-                                    placeholder="Introduce la categoría..." value="{{ old('nombre') }}">
-                                @error('nombre')
+                            <div class="form-group mb-4">
+                                <label class="mr-sm-2 mb-1" for="nombre">Nombre de usuario</label>
+                                <input type="text" id="name" name="name" class="form-control"
+                                    placeholder="Introduce el nombre..." required value="{{ old('name') }}">
+                                @error('name')
+                                    <p class="ms-2 mt-1" style="color: #c62828; font-size: .9rem">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="mr-sm-2 mb-1" for="descripcion">Email</label>
+                                <input type="text" id="email" name="email" class="form-control"
+                                    placeholder="Introduce su email..." required value="{{ old('email') }}">
+                                @error('email')
+                                    <p class="ms-2 mt-1" style="color: #c62828; font-size: .9rem">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="mr-sm-2 mb-1" for="seccion">Puesto</label>
+                                <select class="form-select mr-sm-2" id="puesto" name="puesto" required>
+                                    <option disabled selected>Selecciona el puesto...</option>
+                                    {{-- foreach --}}
+                                    @foreach ($puestos as $value => $text)
+                                        <option value="{{ $value }}" {{ $value == old('puesto') ? 'selected' : '' }}>
+                                            {{ $text }}</option>
+                                    @endforeach
+
+                                </select>
+                                @error('seccion')
+                                    <p class="ms-2 mt-1" style="color: #c62828; font-size: .9rem">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="mr-sm-2 mb-1" for="nombre">Contraseña</label>
+                                <input type="text" id="password" name="password" class="form-control"
+                                    placeholder="Crea su contraseña..." required value="{{ old('password') }}">
+                                @error('password')
                                     <p class="ms-2 mt-1" style="color: #c62828; font-size: .9rem">{{ $message }}</p>
                                 @enderror
                             </div>
