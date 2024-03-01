@@ -83,11 +83,23 @@
                                             })
                                         </script>
                                     </div>
+                                    <style>
+                                        .orderTitle {
+                                            position: relative;
+                                        }
+                                        .orderTitle::after {
+                                            content: "\f0dc";
+                                            font-family: 'Font Awesome';
+                                            font-weight: 800;
+                                            position: absolute;
+                                            right: 10px
+                                        }
+                                    </style>
                                     <div class="customize-input float-end me-3 mb-2">
                                         <select
                                             class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
                                             name="orderType" id="orderTypeNombre" form="nombreForm">
-                                            <option value="" selected disabled>Nombre</option>
+                                            <option value="" selected disabled class="orderTitle">Nombre</option>
                                             <option value="asc" {{ $order == 'articulo.nombre.asc' ? 'selected' : '' }}>
                                                 Nombre ASC</option>
                                             <option value="desc"

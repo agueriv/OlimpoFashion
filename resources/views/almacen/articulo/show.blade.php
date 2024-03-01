@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label class="mr-sm-2 mb-1" for="descripcion">Descripción del artículo</label>
-                                <textarea class="form-control" id="descripcion" name="descripcion" rows="4" disabled>{{$art->descripcion}}</textarea>
+                                <textarea class="form-control" id="descripcion" name="descripcion" rows="4" disabled>{{ $art->descripcion }}</textarea>
                             </div>
                             <div class="form-group mb-4">
                                 <label class="mr-sm-2 mb-1" for="seccion">Sección del artículo</label>
@@ -149,14 +149,15 @@
                 </div>
             </div>
         </div>
-        <script>
-            (() => {
-                'use strict'
-                if (document.getElementById('en_rebaja2').checked) {
-                    document.getElementById('precio_rebajado_in').style.display = 'none';
-                } else {
-                    document.getElementById('precio_rebajado_in').style.display = 'block';
-                }
-            })();
-        </script>
-    @endsection
+    </div>
+    <script>
+        (() => {
+            'use strict'
+            if (document.getElementById('en_rebaja2').checked) {
+                document.getElementById('precio_rebajado_in').style.display = 'none';
+            } else {
+                document.getElementById('precio_rebajado_in').style.display = 'block';
+            }
+        })();
+    </script>
+@endsection
