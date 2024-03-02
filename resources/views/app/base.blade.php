@@ -36,6 +36,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/main.css') }}">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="url-base" content="{{ url('') }}">
+
 </head>
 
 <body class="animsition">
@@ -46,7 +49,8 @@
                 <nav class="limiter-menu-desktop container">
 
                     <a href="#" class="logo">
-                        <img style="max-height: 40px" src="{{ url('assets/images/logo_olimpo_bg.svg') }}" alt="IMG-LOGO">
+                        <img style="max-height: 40px" src="{{ url('assets/images/logo_olimpo_bg.svg') }}"
+                            alt="IMG-LOGO">
                     </a>
 
                     <div class="menu-desktop">
@@ -55,25 +59,22 @@
                                 <a href="#">Inicio</a>
                             </li>
                             <li>
-                                <a href="#categorias">Categorías</a>
+                                <a href="#secciones">Secciones</a>
                             </li>
                             <li>
                                 <a href="#catalogo">Catálogo</a>
                             </li>
                             @auth
                                 <li>
-                                    <a href="{{url('almacen')}}">Almacén</a>
+                                    <a href="{{ url('almacen') }}">Almacén</a>
                                 </li>
                             @endauth
                         </ul>
                     </div>
 
                     <div class="wrap-icon-header flex-w flex-r-m">
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                            <i class="zmdi zmdi-search"></i>
-                        </div>
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                            data-notify="2">
+                        <div id="icono-carrito" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+                            data-notify="0">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
                     </div>
@@ -88,11 +89,8 @@
             </div>
 
             <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-                    <i class="zmdi zmdi-search"></i>
-                </div>
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                    data-notify="2">
+                <div id="icono-carrito-mobile" class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+                    data-notify="0">
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
             </div>
@@ -123,12 +121,6 @@
                 <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
                     <img src="{{ url('assets/images/icons/icon-close2.png') }}" alt="CLOSE">
                 </button>
-                <form class="wrap-search-header flex-w p-l-15">
-                    <button class="flex-c-m trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                    <input class="plh3" type="text" name="search" placeholder="Search...">
-                </form>
             </div>
         </div>
     </header>
@@ -281,7 +273,8 @@
                                 <div class="wrap-slick3-dots"></div>
                                 <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
                                 <div class="slick3 gallery-lb">
-                                    <div class="item-slick3" data-thumb="{{ url('assets/images/product-detail-01.jpg') }}">
+                                    <div class="item-slick3"
+                                        data-thumb="{{ url('assets/images/product-detail-01.jpg') }}">
                                         <div class="wrap-pic-w pos-relative">
                                             <img src="{{ url('assets/images/product-detail-01.jpg') }}"
                                                 alt="IMG-PRODUCT">
@@ -291,7 +284,8 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="item-slick3" data-thumb="{{ url('assets/images/product-detail-02.jpg') }}">
+                                    <div class="item-slick3"
+                                        data-thumb="{{ url('assets/images/product-detail-02.jpg') }}">
                                         <div class="wrap-pic-w pos-relative">
                                             <img src="{{ url('assets/images/product-detail-02.jpg') }}"
                                                 alt="IMG-PRODUCT">
@@ -301,7 +295,8 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="item-slick3" data-thumb="{{ url('assets/images/product-detail-03.jpg') }}">
+                                    <div class="item-slick3"
+                                        data-thumb="{{ url('assets/images/product-detail-03.jpg') }}">
                                         <div class="wrap-pic-w pos-relative">
                                             <img src="{{ url('assets/images/product-detail-03.jpg') }}"
                                                 alt="IMG-PRODUCT">
@@ -413,6 +408,8 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ url('assets/js/shop.js') }}"></script>
 
     <script src="{{ url('assets/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
 
