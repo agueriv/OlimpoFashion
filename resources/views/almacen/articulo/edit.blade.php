@@ -169,11 +169,10 @@
                                         <i class="fas fa-trash me-1"></i>
                                         Eliminar
                                     </button>
-                                    <a href="{{ url('almacen/articulo/' . $art->id . '/edit') }}"
-                                        class="btn btn-warning btn-rounded float-end me-3">
+                                    <button type="submit" class="btn btn-warning btn-rounded float-end me-3">
                                         <i class="fas fa-pencil-alt me-1"></i>
                                         Editar
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </form>
