@@ -125,7 +125,7 @@
             <div class="col-lg-5 col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-4">Últimas categrías</h4>
+                        <h4 class="card-title mb-4">Últimas categorías</h4>
                         <ul class="list-style-none mb-0">
                             @foreach ($lastCats as $cat)
                                 <a href="{{ url('almacen/categoria/' . $cat->id) }}">
