@@ -145,7 +145,7 @@
         block2pic.appendChild(image);
         let quickVisit = document.createElement('a');
         quickVisit.setAttribute('href', '');
-        quickVisit.className = 'block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04';
+        quickVisit.className = 'block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 add-to-cart-btn';
         quickVisit.textContent = 'Añadir al carrito';
         quickVisit.onclick = (e) => {
             // Añadir al carrito
@@ -161,7 +161,7 @@
         let block2textchild1 = document.createElement('div');
         block2textchild1.className = 'block2-txt-child1 flex-col-l';
         let nombre = document.createElement('span');
-        nombre.className = 'stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6';
+        nombre.className = 'stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 product-name';
         nombre.textContent = data.nombre;
         block2textchild1.appendChild(nombre);
         if (data.en_rebaja == 1) {

@@ -39,13 +39,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="url-base" content="{{ url('') }}">
 
+    <style>
+        :root {
+            scroll-behavior: smooth
+        }
+    </style>
+
 </head>
 
 <body class="animsition">
 
     <header>
-        <div class="container-menu-desktop">
-            <div class="wrap-menu-desktop">
+        <div class="container-menu-desktop fix-menu-desktop">
+            <div class="wrap-menu-desktop" style="top: 0">
                 <nav class="limiter-menu-desktop container">
 
                     <a href="#" class="logo">
@@ -484,10 +490,11 @@
 
         /*---------------------------------------------*/
 
-        $('.js-addcart-detail').each(function() {
-            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+        $('.add-to-cart-btn').each(function(e) {
+            console.log('prueba')
+            var nameProduct = $(this).parent().parent().find('.product-name').html();
             $(this).on('click', function() {
-                swal(nameProduct, "is added to cart !", "success");
+                swal(nameProduct, "añadido al carrito !", "success");
             });
         });
     </script>
