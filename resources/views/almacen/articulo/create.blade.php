@@ -111,12 +111,12 @@
                                 <label class="mr-sm-2 mb-3 d-block">¿Artículo en rebajas?</label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="en_rebaja" id="en_rebaja1"
-                                        value="1">
+                                        value="1" {{old('en_rebaja') == 1 ? 'checked' : ''}}>
                                     <label class="form-check-label" for="en_rebaja1">Si, está rebajado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="en_rebaja" id="en_rebaja2"
-                                        value="0" checked>
+                                        value="0" {{old('en_rebaja') != 1 ? 'checked' : ''}}>
                                     <label class="form-check-label" for="en_rebaja2">No, no está rebajado</label>
                                 </div>
                                 @error('en_rebaja')
