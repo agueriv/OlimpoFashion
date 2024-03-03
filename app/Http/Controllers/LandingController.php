@@ -63,4 +63,8 @@ class LandingController extends Controller
             'lastCats' => $lastCats
         ]);
     }
+
+    function redirectHome() {
+        return redirect('/');
+    }
 }

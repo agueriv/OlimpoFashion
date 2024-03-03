@@ -49,7 +49,7 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="{{url('almacen')}}">
                             <img style="max-height: 50px" src="{{ url('backassets/static/logo_olimpo.svg') }}"
                                 alt="" class="img-fluid">
                         </a>
@@ -98,10 +98,6 @@
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-right user-dd animated flipInY">
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
-                                        class="svg-icon me-2 ms-1"></i>
-                                    My Profile</a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
