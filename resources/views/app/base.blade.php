@@ -170,22 +170,17 @@
                     <ul>
                         <li class="p-b-10">
                             <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                                Track Order
+                                Política de privacidad
                             </a>
                         </li>
                         <li class="p-b-10">
                             <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                                Returns
+                                Preguntas frecuentes
                             </a>
                         </li>
                         <li class="p-b-10">
                             <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                                Shipping
-                            </a>
-                        </li>
-                        <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                                FAQs
+                                Tienda
                             </a>
                         </li>
                     </ul>
@@ -195,8 +190,7 @@
                         CONTACTO
                     </h4>
                     <p class="stext-107 cl7 size-201">
-                        Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us
-                        on (+1) 96 716 6879
+                        Alguna pregunta? No dudes en consultarnos lo que necesites en nuestras redes sociales!
                     </p>
                     <div class="p-t-27">
                         <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
@@ -217,7 +211,7 @@
                     <form>
                         <div class="wrap-input1 w-full p-b-4">
                             <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
-                                placeholder="email@example.com">
+                                placeholder="email@ejemplo.com">
                             <div class="focus-input1 trans-04"></div>
                         </div>
                         <div class="p-t-18">
