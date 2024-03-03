@@ -197,6 +197,42 @@
         return template;
     }
 
+    function newCategoriaFilt() {
+        let catContainer = document.getElementById('list-cat-filter');
+        let newCat = `<li class="p-b-6">
+                        <span class="fs-15 lh-12 m-r-6" style="color: #222;">
+                            <i class="zmdi zmdi-circle"></i>
+                        </span>
+                        <a href="#" class="filter-link stext-106 trans-04">
+                            Black
+                        </a>
+                    </li>`;
+        peticion(urlBase + 'categorias', (data) => {
+            data.forEach((item) => {
+                let newCat = document.createElement('li');
+                newCat.className = 'p-b-6';
+                let boton = document.createElement('button');
+                boton.setAttribute('data-ftype', 'categoria');
+                boton.setAttribute('data-filter', item.nombre);
+                boton.className = 'filter-link stext-106 trans-04';
+                boton.textContent = item.nombre;
+                boton.onclick = (e) => {
+                    switch (e.target.dataset.ftype) {
+                        // Si type categoria
+                        case 'categoria':
+                            catalogar(urlBase + 'producto?page=1&categoria=' + e.target.dataset.filter)
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                newCat.appendChild(boton);
+                catContainer.appendChild(newCat);
+            })
+        })
+    }
+
     // Se ejecuta al cargar la pagina por si hay datos en el storage
     function initializeCart() {
         // Comprobamos que el carrito este en localstorage
@@ -220,7 +256,7 @@
         let cart = JSON.parse(localStorage.getItem('cart'));
         // Comprobamos si el articulo esta almacenado en el storage
         let inStorage = [];
-        if(cart.articulos != null) {
+        if (cart.articulos != null) {
             inStorage = cart.articulos.filter((item) => item.data.id == art.id);
         }
         // Si no lo añadimos con cantidad 1
@@ -399,6 +435,22 @@
         }
     })
 
+    // Menu de temporadas
+    let buttonsTempFilter = Array.from(document.getElementById('temporada-filt-buttons').children);
+    buttonsTempFilter.forEach((item) => {
+        item.onclick = (e) => {
+            switch (e.target.dataset.ftype) {
+                // Si type seccion
+                case 'temporada':
+                    catalogar(urlBase + 'producto?page=1&temporada=' + e.target.dataset.filter);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    })
+
     // Ordenación por precio, nombre o mas recientes
     let orderByMenu = Array.from(document.getElementById('order-by').children);
     orderByMenu.forEach((item) => {
@@ -423,5 +475,6 @@
         }
         // Comprobar si hay datos de carrito en la sesion o en localstorage
         initializeCart();
+        newCategoriaFilt();
     });
 })();

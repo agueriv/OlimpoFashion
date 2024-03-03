@@ -22,3 +22,4 @@ Route::prefix('almacen')->group(function () {
 
 // Ruta para obtener productos
 Route::get('producto', [ShopController::class, 'give_producto'])->name('producto');
+Route::get('categorias', [ShopController::class, 'give_categorias'])->name('categorias');
