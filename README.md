@@ -60,13 +60,18 @@
 ## Sobre el Proyecto
 
 Este proyecto consta de dos partes:
+
 -   <b>Back-end (Almacen)</b>: Esta es la parte de administración de la aplicación. En ella podrás dar de altas nuevos artículos y categorías además de gestionar los usuarios si tienes rol de Superadministrador.
 
-<img align="center" src="screenshot_almacen.png" alt="Logo" width="80%" style="aspect-ratio: 16 / 9;">
+<div align="center">
+  <img  src="screenshot_almacen.png" alt="Logo" width="80%" style="aspect-ratio: 16 / 9;">
+</div>
 
 -   <b>Front-end (Tienda)</b>: Esta es la parte donde encontrarás todo el catálogo de OlimpoFashion y podrás añadir artículos al carrito, eliminarlos, filtrar por secciones, categorías y ordenar por precio y nombre.
 
-<img src="screenshot.png" alt="Logo" width="80%" style="aspect-ratio: 16 / 9; padding-left: 10%">
+<div align="center">
+  <img  src="screenshot.png" alt="Logo" width="80%" style="aspect-ratio: 16 / 9;">
+</div>
 
 <p align="right">(<a href="#readme-top">Inicio</a>)</p>
 
@@ -97,7 +102,7 @@ Para comenzar a usar la aplicación te dejo aquí unos pequeños pasos para una 
     ```sh
     git clone https://github.com/agueriv/OlimpoFashion.git
     ```
-3. Crear carpeta data en `compose/mysql` (aquí almacenará la aplicación los datos de la base de datos)
+2. Crear carpeta data en `compose/mysql` (aquí almacenará la aplicación los datos de la base de datos)
     ```sh
     mkdir compose/mysql/data
     ```
