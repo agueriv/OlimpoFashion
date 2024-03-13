@@ -62,7 +62,7 @@
 Este proyecto consta de dos partes:
 -   <b>Back-end (Almacen)</b>: Esta es la parte de administración de la aplicación. En ella podrás dar de altas nuevos artículos y categorías además de gestionar los usuarios si tienes rol de Superadministrador.
 
-<img src="screenshot_almacen.png" alt="Logo" width="80%" style="aspect-ratio: 16 / 9; padding-left: 10%">
+<img align="center" src="screenshot_almacen.png" alt="Logo" width="80%" style="aspect-ratio: 16 / 9;">
 
 -   <b>Front-end (Tienda)</b>: Esta es la parte donde encontrarás todo el catálogo de OlimpoFashion y podrás añadir artículos al carrito, eliminarlos, filtrar por secciones, categorías y ordenar por precio y nombre.
 
