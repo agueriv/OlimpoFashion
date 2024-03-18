@@ -20,7 +20,7 @@
   <h3 align="center">OlimpoFashion</h3>
 
   <p align="center">
-    Tienda online de productos de moda realizada con Laravel usando Ajax.
+    Tienda online de productos de moda realizada con Laravel usando Ajax
     <br />
     <a href="https://github.com/agueriv/README.md"><strong>Explora la documentación »</strong></a>
     <br />
