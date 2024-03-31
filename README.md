@@ -75,18 +75,9 @@ Este proyecto consta de dos partes:
 
 <p align="right">(<a href="#readme-top">Inicio</a>)</p>
 
-### Stack de Tecnologías
+## Stack de Tecnologías
 
-En esta sección deberías enumerar los principales frameworks/bibliotecas utilizados para arrancar tu proyecto. Deja los complementos/plugins para la sección de agradecimientos. He aquí algunos ejemplos.
-
--   [![Next][Next.js]][Next-url]
--   [![React][React.js]][React-url]
--   [![Vue][Vue.js]][Vue-url]
--   [![Angular][Angular.io]][Angular-url]
--   [![Svelte][Svelte.dev]][Svelte-url]
--   [![Laravel][Laravel.com]][Laravel-url]
--   [![Bootstrap][Bootstrap.com]][Bootstrap-url]
--   [![JQuery][JQuery.com]][JQuery-url]
+[![My Skills](https://skillicons.dev/icons?i=js,html,css,bootstrap,laravel)](.)
 
 <p align="right">(<a href="#readme-top">Inicio</a>)</p>
 
